@@ -1,0 +1,101 @@
+var hour = document.getElementById("hour");
+var minute = document.getElementById("minute");
+var second = document.getElementById("second");
+var nm = prompt("Please enter your name: ");
+document.getElementById("name").innerHTML=nm;
+
+function setClockTime(){
+    const day = new Date();
+    const hh = day.getHours(); 
+    const mm = day.getMinutes();
+    const ss = day.getSeconds();
+    var dd = day.getDay();
+    var dt = day.getUTCDate();
+    
+
+    if (dd==1){
+        var d = "Mon";
+    }
+    if (dd==2){
+        var d = "Tues";
+    }
+    if (dd==3){
+        var d = "Wed";
+    }
+    if (dd==4){
+        var d = "Thurs";
+    }
+    if (dd==5){
+        var d = "Fri";
+    }
+    if (dd==6){
+        var d = "Sat";
+    }
+    if (dd==0){
+        var d = "Sun";
+    }
+    
+    const hourDeg = (hh*30) + (mm*0.5); //0-23
+    const minuteDeg = (mm*6) + (ss*0.1); //0-59
+    const secondDeg = (ss*6); //0-59
+
+    hour.style.transform = `rotateZ(${hourDeg}deg)`;
+    minute.style.transform = `rotateZ(${minuteDeg}deg)`;
+    second.style.transform = `rotateZ(${secondDeg}deg)`;
+    digitalClock.innerText =  `${d}, ${dt}`;   
+}
+setClockTime();
+setInterval(setClockTime,1000);
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  var x = document.getElementById("demo");
+  
+  lat=position.coords.latitude;
+  lon=position.coords.longitude;
+  
+  $.getJSON('http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&units=metric&appid=af095c1bac8fb6ed8c24c7cf694358ba', function(data) {
+        
+        var text1 = `${data['weather'][0]['main']}`
+       
+        // u can change these names like --- Weather:------ 
+       
+         var text2= `<img src='http://openweathermap.org/img/wn/${data['weather'][0]['icon']}@2x.png'>`
+         var text3 = `Temp: ${data['main']['temp']}°C`
+         var text4 = `Feels Like:  ${data['main']['feels_like']}°C`
+        
+         var text5=   `Humidity:  ${data['main']['humidity']}%`
+         var text6=   `Pressure:  ${data['main']['pressure']} hPa`
+         var text7=   `Wind speed: ${data['wind']['speed']*3600/1000} Kmph`
+                  
+
+
+                    
+        
+        $("#weather").html(text1);
+        $("#img").html(text2);
+        $("#temp").html(text3);
+        $("#feelslike").html(text4);
+        $("#humidity").html(text5);
+        $("#pressure").html(text6);
+        $("#wind").html(text7);
+
+    });
+
+  $.getJSON('https://api.mapbox.com/geocoding/v5/mapbox.places/'+lon+','+lat+'.json?access_token=pk.eyJ1IjoicHJpdGFtYzAxMiIsImEiOiJja2duZzV6OHIwdm80MnpvNmtkaHQzMDB1In0.KbjzB6vMA4LQ8pMSZrDQhA',function(doc){
+    var pos=`Location:${doc['features'][0]['place_name']}<br>
+            Latitude: ${doc['query'][1].toFixed(6)}<br>
+            Longitude:${doc['query'][0].toFixed(6)}`
+
+
+    $('#loc').html(pos);
+  });
+}
+ 
