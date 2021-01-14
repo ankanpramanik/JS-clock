@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Analog clock UI</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Kaushan+Script&family=Nunito&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fira+Sans:wght@600&family=Kaushan+Script&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body onload="getLocation()">
+    <div class="clock">
+        <div id="second"></div>
+        <div id="minute"></div>
+        <div id="hour"></div>
+        <span id="digitalClock">demo</span>
+        <span id="name">demo1</span>
+    </div>
+    <script src="script.js"></script>
+
+    <div class="weather">
+        <p id="loc"></p>
+        <p id="temp"></p>
+        <p id="weather"></p>
+        <!-- <p id="img"></p> -->
+
+        <p id="feelslike"></p>
+        <p id="humidity"></p>
+        <!-- <p id="pressure"></p> -->
+        <p id="wind"></p>
+    </div>
+
+    <div class="weather main-toggle">
+        <!-- Begin Unit Switch -->
+        <span>°F</span>
+        <button id="unit-switch"><span id="unit-toggle"></span></button>
+        <span>°C</span>
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function () {
+            location = ''
+        }, 900000)
+    </script>
+
+</body>
+
+</html>

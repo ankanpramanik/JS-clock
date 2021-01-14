@@ -1,0 +1,240 @@
+body{
+  padding: 0;
+  margin: 0;
+    /* background-color: rgb(219, 67, 67); */
+  height: 100%;
+  background-image: url(images/haze.jfif);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.clock{
+    width: 260px;
+    height: 260px;
+    background-color: rgb(234, 246, 248);
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 50%;
+    border: 18px solid rgb(179, 221, 226);
+    background-image: url('clock.png');
+    box-shadow: inset 0px 0px 2px 1px rgba(230, 228, 228, 0), 0px 0px 2px 1px rgba(129, 54, 54, 0);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+}
+.clock::after{
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: black;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    z-index: 4;
+}
+#second, #minute, #hour{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#second{
+    z-index: 3;
+}
+#minute{
+    z-index: 2;
+}
+#hour{
+    z-index: 1;
+}
+#second::before, #minute::before, #hour::before, #second::after{
+    content: "";
+    display: block;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%, -100%);
+    border-radius: 10px;
+}
+#second::before{
+    width: 1px;
+    height: 120px;
+    background: red;
+}
+#second::after{
+    width: 1px;
+    height: 30px;
+    background: red;
+    translate: translate(-50%,0);
+}
+#minute::before{
+    width: 2px;
+    height: 100px;
+    background: rgb(65, 32, 104);
+}
+#hour::before{
+    width: 4px;
+    height: 70px;
+    background: rgb(31, 1, 1);
+}
+#digitalClock{
+    position: absolute;
+    z-index: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f3dede;
+    padding: 0 6px 0 6px;
+    font-size: 12px;
+    top: 50%;
+    left: 55%;
+    transform: translateY(-50%);
+    box-shadow: inset 0px 0px 2px 2px #d7dff0;
+    text-align: center;
+    height: 20px;
+    width: 70px;
+    padding-top: 5px;
+    font-weight: 600;
+    font-size: 15px;
+}
+#name{
+    position: absolute;
+    z-index: 0;
+    font-family: Arial, Helvetica, sans-serif ;
+    background: #ece6e6;
+    padding: 0 6px 0 6px;
+    font-size: 12px;
+    top: 30%;
+    left: 31%;
+    transform: translateY(-50%);
+    text-align: center;
+    height: 25px;
+    width: 100px ;
+    padding-top: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+@media only screen and (min-width:1500px){
+    .info{
+     position: fixed;
+     bottom: 0;
+     right: 0;
+     color: #d2fbfd;
+     font-family: 'Times New Roman', Times, serif;
+    }
+}
+.credits{
+    position: absolute;
+    bottom: 0 auto;
+    left: 0 auto;
+    color: #d2fbfd;
+    font-family: 'Times New Roman', Times, serif;
+}
+#demo, #loc{
+    font-family: 'Source Code Pro', monospace;
+    font-size: large;
+    color: rgb(73, 27, 116);
+}
+#feelslike, #humidity, #wind{
+    /* display: inline; */
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: #ecf0e8;
+}
+#temp{
+    font-size: 60px;
+    font-family: 'Fira Sans', sans-serif;
+    color: #eedfdf;
+    margin: 10px;
+}
+#weather{
+    font-size: 35px;
+    font-family: 'Fira Sans', sans-serif;
+    color:  #f3e3e3;
+    margin: 0;
+}
+
+.weather{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    /* padding-top: 10px;  */
+}
+
+.toggle{
+   position: relative;
+   margin-top: 10px;
+  }
+
+.btn{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #efefef;
+  font-weight: 300;
+}
+
+#loc{
+  font-family: 'Nunito', sans-serif;
+  color: #eaece4;
+}
+
+.weather > span {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #efefef;
+}
+/* .weather > span:before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 0px;
+    height: 3px;
+    width: 3px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+} */
+.main-toggle span {
+  margin: 0 0 0 16px;
+}
+.main-toggle span:last-child {
+  margin-left: 11px;
+}
+.weather button {
+		background: #6bbf6b;
+		border: none;
+		border-radius: 30px;
+		outline: none;
+		width: 45px;
+		height: 20px;
+		margin: 5px 5px 0;
+		cursor: pointer;
+		position: relative;
+		transition: background .2s;
+}
+.weather button:active {
+		background: #67b567;
+	}
+.weather #unit-toggle {
+		position: absolute;
+		display: inline-block;
+		left: -8px;
+		top: 2px;
+		width: 15px;
+		height: 15px;
+		background: #fff;
+		border-radius: 50%;
+		transition: left .2s;
+}
+#unit-toggle.toggle {
+		left: 16px;
+}
